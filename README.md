@@ -38,7 +38,7 @@ Flutter run
 ## Demo
 
 
-<video src='https://res.cloudinary.com/dvk7m4iik/video/upload/v1717136498/supportU/wnxcfvrezcop0nfymlj9.mp4' width=180></video>
+https://res.cloudinary.com/dvk7m4iik/video/upload/v1717136498/supportU/wnxcfvrezcop0nfymlj9.mp4
 
 ## Screenshots
 
@@ -66,7 +66,7 @@ Flutter run
 
 Welcome Email             |  Login Alert
 :-------------------------:|:-------------------------:
-![](https://res.cloudinary.com/dvk7m4iik/image/upload/v1717139008/supportU/k69sqil3owvxuirwy0vz.jpg)  |  ![](https://res.cloudinary.com/dvk7m4iik/image/upload/v1717139039/supportU/gwrzkii2bkxnip5pqmfx.jpg)
+<img src='https://res.cloudinary.com/dvk7m4iik/image/upload/v1717139008/supportU/k69sqil3owvxuirwy0vz.jpg' width=180/>  |  <img src='https://res.cloudinary.com/dvk7m4iik/image/upload/v1717139039/supportU/gwrzkii2bkxnip5pqmfx.jpg' width=180/>
 
 
 
