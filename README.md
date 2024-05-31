@@ -33,7 +33,7 @@ Flutter run
 ## Demo
 
 
-<video src='https://res.cloudinary.com/dvk7m4iik/video/upload/v1717136498/supportU/wnxcfvrezcop0nfymlj9.mp4' width=180></video>
+<video src='https://res.cloudinary.com/dvk7m4iik/video/upload/v1717136498/supportU/wnxcfvrezcop0nfymlj9.mp4' width=180/>
 
 ## Screenshots
 
