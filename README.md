@@ -9,7 +9,7 @@ Here is the backend repo :(https://github.com/mihirdaka/support.ai_backend)
 Also this app is hosted on firebase as a webApp with limited functionality 
 url : (https://supportu-app.web.app/)
 
-## Requirements
+## 1. Requirements
 
 This project requiers Flutter framework to be installed:
 
@@ -18,7 +18,7 @@ This project requiers Flutter framework to be installed:
 <!-- ## Getting Started -->
 
 
-## Installation
+## 2. Installation
 
 Run this command to get all the depedencies 
 
@@ -26,7 +26,7 @@ Run this command to get all the depedencies
 flutter pub get
 ```
 
-## Usage
+## 3. Usage
 
 1.  Run the app
 ```bash
@@ -38,33 +38,33 @@ Flutter run
 
 
 
-## Demo
+## 4. Demo
 
 
 https://res.cloudinary.com/dvk7m4iik/video/upload/v1717136498/supportU/wnxcfvrezcop0nfymlj9.mp4
 
-## Screenshots
+## 4. Screenshots
 
-1. Home Screen
+### 4.1 Home Screen
 
 <img src='https://res.cloudinary.com/dvk7m4iik/image/upload/v1717136217/supportU/csxqurmjgf8qztfto8ek.png' width=180/>
 
 
-2. Chat Screen
+### 4.2 Chat Screen
 
 <img src='https://res.cloudinary.com/dvk7m4iik/image/upload/v1717136223/supportU/kadqroy5lswnnacqtiju.png' width=180/>
 
 
-3. Chat Screen
+### 4.3 Chat Screen
 
 <img src='https://res.cloudinary.com/dvk7m4iik/image/upload/v1717136222/supportU/ylzto9nxzlbuqgen4ofy.png' width=180/>
 
 
-4. Chat History
+### 4.4 Chat History
 
 <img src='https://res.cloudinary.com/dvk7m4iik/image/upload/v1717136221/supportU/ouhvpee1vxesikunr48w.png' width=180/>
 
-### Alert Module
+### 5. Alert Module
 
 
 Welcome Email             |  Login Alert
@@ -74,7 +74,7 @@ Welcome Email             |  Login Alert
 
 
 
-## Roadmap
+## 6. Roadmap
 
 Since this is just a take home assignment there are lot more feature that can be added on a longer run
 
@@ -86,7 +86,7 @@ Since this is just a take home assignment there are lot more feature that can be
 
 
 
-## Contact
+## 7. Contact
 
 Your Name - [@dakamihir](https://twitter.com/dakamihir) - dakamihir@gmail.com
 
