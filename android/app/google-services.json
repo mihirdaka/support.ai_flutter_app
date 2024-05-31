@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "402438617896",
+    "project_id": "supportu-app",
+    "storage_bucket": "supportu-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:402438617896:android:1b00bf80e180b6238bee1d",
+        "android_client_info": {
+          "package_name": "com.example.supportu_flutter_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtm5oqdm5Rdi2AB7wnPNLLFY1j3DO5szU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
