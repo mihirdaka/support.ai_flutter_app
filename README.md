@@ -30,24 +30,41 @@ Flutter run
 
 
 
+## Demo
+
+
+<video src='https://res.cloudinary.com/dvk7m4iik/video/upload/v1717136498/supportU/wnxcfvrezcop0nfymlj9.mp4' width=180></video>
 
 ## Screenshots
 
 1. Home Screen
 
-![Page One](https://res.cloudinary.com/dvk7m4iik/image/upload/v1717136217/supportU/csxqurmjgf8qztfto8ek.png)
+<img src='https://res.cloudinary.com/dvk7m4iik/image/upload/v1717136217/supportU/csxqurmjgf8qztfto8ek.png' width=180/>
+
 
 2. Chat Screen
 
-![Page Two](https://res.cloudinary.com/dvk7m4iik/image/upload/v1717136223/supportU/kadqroy5lswnnacqtiju.png)
+<img src='https://res.cloudinary.com/dvk7m4iik/image/upload/v1717136223/supportU/kadqroy5lswnnacqtiju.png' width=180/>
+
 
 3. Chat Screen
 
-![Page Three](https://res.cloudinary.com/dvk7m4iik/image/upload/v1717136222/supportU/ylzto9nxzlbuqgen4ofy.png)
+<img src='https://res.cloudinary.com/dvk7m4iik/image/upload/v1717136222/supportU/ylzto9nxzlbuqgen4ofy.png' width=180/>
+
 
 4. Chat History
 
-![Page Four](https://res.cloudinary.com/dvk7m4iik/image/upload/v1717136221/supportU/ouhvpee1vxesikunr48w.png)
+<img src='https://res.cloudinary.com/dvk7m4iik/image/upload/v1717136221/supportU/ouhvpee1vxesikunr48w.png' width=180/>
+
+
+<br>
 For help getting started with Flutter development, view the
+
+
+
+
+
+
+
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
