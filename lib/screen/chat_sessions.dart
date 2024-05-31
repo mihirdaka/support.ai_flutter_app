@@ -93,7 +93,7 @@ class _ChatSessionsState extends State<ChatSessions> {
                                         Icons.arrow_forward_ios_sharp),
                                     onPressed: () {
                                       // open chat screen
-                                      print('session id : ${session?.key}');
+                                      //print('session id : ${session?.key}');
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(

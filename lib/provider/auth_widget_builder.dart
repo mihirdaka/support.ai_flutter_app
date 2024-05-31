@@ -36,8 +36,8 @@ class AuthWidgetBuilder extends StatelessWidget {
         * added to the following MultiProvider list.
         * Once a user has been detected, a re-build will be initiated.
          */
-        print('object');
-        print(user.status);
+        //print('object');
+        //print(user.status);
         return MultiProvider(
           providers: [
             Provider<UserModel>.value(value: userModel),

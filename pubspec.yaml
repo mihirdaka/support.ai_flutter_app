@@ -52,6 +52,7 @@ dependencies:
   permission_handler: ^10.2.0
   audioplayers: ^6.0.0
   voice_message_package: ^2.2.1
+  audio_waveforms: ^1.0.5
   
 
 dev_dependencies:

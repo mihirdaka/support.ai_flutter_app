@@ -47,9 +47,11 @@ class ChatMessage extends HiveObject {
   DateTime? timeStamp;
 
   @JsonKey(ignore: true)
+  // @HiveField(4)
   File? audioFile;
 
   @JsonKey(includeFromJson: false)
+  // @HiveField(4)
   bool? isAudio;
 
   ChatMessage({

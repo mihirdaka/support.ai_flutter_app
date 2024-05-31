@@ -164,7 +164,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               GenderPicker(
                 callBack: (value) {
                   selectedGender = value;
-                  // print(value);
+                  // //print(value);
                 },
               ),
 
@@ -178,7 +178,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     DOBInput(
                       callBack: (value) {
                         selectedDob = value;
-                        // print(value);
+                        // //print(value);
                       },
                     ),
                     const SizedBox(
@@ -224,12 +224,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       selectedGender?.name ?? 'other',
                                     );
 
-                                    if (userModel?.status == false) {
-                                      const snack = SnackBar(
+                                    if (!(userModel?.status ?? false)) {
+                                      final snack = SnackBar(
                                         elevation: 0,
                                         behavior: SnackBarBehavior.floating,
                                         backgroundColor: Colors.redAccent,
-                                        content: Text('Something went wrong'),
+                                        content: Text(
+                                            userModel?.error?['message'] ??
+                                                'Something went wrong'),
                                       );
 
                                       ScaffoldMessenger.of(context)

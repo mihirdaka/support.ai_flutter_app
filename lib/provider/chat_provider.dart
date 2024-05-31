@@ -16,10 +16,30 @@ class ChatProvider extends ChangeNotifier {
   int? sessionId;
   List<ChatMessage> get messages => _messages;
 
+  bool isChatBotThinking = false;
+
   ChatProvider() {
     //initialise object
     // sessionId = 0;
   }
+
+  setAiThinking(bool value) {
+    isChatBotThinking = value;
+    // if thinking add a message to the chat
+    if (value) {
+      final newMessage = ChatMessage(
+        message: 'Thinking...',
+        role: Role.assistant,
+        timeStamp: DateTime.now(),
+      );
+
+      _messages.add(newMessage);
+    } else {
+      _messages.removeWhere((element) => element.message == 'Thinking...');
+    }
+    notifyListeners();
+  }
+
   void addMessage(
     String message,
   ) async {
@@ -30,24 +50,27 @@ class ChatProvider extends ChangeNotifier {
     );
 
     _messages.add(newMessage);
-    if (sessionId == 0) {
+    if (sessionId == null) {
       await initNewSession(newMessage);
+      await addMessageToSession(newMessage);
+    } else {
+      await addMessageToSession(newMessage);
     }
-    addMessageToSession(newMessage);
 
     notifyListeners();
   }
 
   void clearMessages() {
     _messages.clear();
-    sessionId = 0;
+    //print('messages cleared');
+    sessionId = null;
   }
 
   //only initialise the session box if the assistant replied to the user
 
   initNewSession(message) async {
-    sessionId = (sessionBox?.length ?? 0) + 1;
-
+    sessionId = (sessionBox?.length ?? 0);
+    // //print('session id : $sessionId');
     await sessionBox?.add(Sessions(sessionId: sessionId, messages: []));
   }
 
@@ -61,27 +84,25 @@ class ChatProvider extends ChangeNotifier {
     final session = await sessionBox?.get(sessionId);
     if (sessionBox?.containsKey(sessionId) ?? false) {
       session?.messages?.add(message);
-
       await sessionBox?.put(sessionId, session);
       if (kDebugMode) {
-        print('message added to session');
+        //print('message added to session');
       }
     } else {
       if (kDebugMode) {
-        print('session does not exist for $sessionId');
+        //print('session does not exist for $sessionId');
       }
       // addMessageToSession(message);
     }
   }
 
   loadSession() async {
-    if (sessionId == 0) {
-      print('cannot load');
-
+    if (sessionId == null) {
+      //print('cannot load');
       return;
     }
     final session = await sessionBox?.get(sessionId);
-    print('message length : ${session?.messages?.length}');
+    //print('message length : ${session?.messages?.length}');
     _messages = session?.messages ?? [];
     notifyListeners();
   }
@@ -89,10 +110,7 @@ class ChatProvider extends ChangeNotifier {
   Future<ChatResponse?> chatWithAssistant(String message) async {
     try {
       addMessage(message);
-
-      // final context  = _messages.map
-      // make a context list with last 5 messages
-
+      setAiThinking(true);
       final context = _messages.length > 5
           ? _messages.sublist(_messages.length - 5)
           : _messages;
@@ -113,18 +131,20 @@ class ChatProvider extends ChangeNotifier {
           role: Role.assistant,
           timeStamp: DateTime.now(),
         );
+        setAiThinking(false);
 
         _messages.add(newMessage);
-        addMessageToSession(newMessage);
 
-        notifyListeners();
+        addMessageToSession(newMessage);
         return response;
       } else {
-        notifyListeners();
+        setAiThinking(false);
         return response;
       }
       // return _userFromFirebase(result.user);
     } on DioException catch (e) {
+      setAiThinking(false);
+
       return ChatResponse.fromJson(e.response?.data);
     }
   }
@@ -140,7 +160,9 @@ class ChatProvider extends ChangeNotifier {
       );
 
       _messages.add(userMessage);
-      notifyListeners();
+      setAiThinking(true);
+
+      // notifyListeners();
 
       final response = await authApiClient.uploadAudioFile(audioFile!);
 
@@ -153,12 +175,15 @@ class ChatProvider extends ChangeNotifier {
       );
 
       _messages.add(newMessage);
+      setAiThinking(false);
 
-      notifyListeners();
+      // notifyListeners();
       return response;
     } on DioException catch (e) {
-      print('i got error \n\n\n\n');
-      print(e.toString());
+      setAiThinking(false);
+
+      //print('i got error \n\n\n\n');
+      //print(e.toString());
       return null;
     }
   }

@@ -1,9 +1,12 @@
 import 'dart:math';
 import 'dart:ui';
 
+import 'package:audio_waveforms/audio_waveforms.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 // import 'package:just_audio/just_audio.dart';
 import 'package:path_provider/path_provider.dart';
@@ -31,27 +34,24 @@ class _ChatScreenState extends State<ChatScreen> {
 
   ValueNotifier<bool> isRecording = ValueNotifier<bool>(false);
   File audioFile = File('');
+
   Future<void> startRecording() async {
     audioFile = File(
         '${(await getTemporaryDirectory()).path}/${Random().nextInt(10000)}.mp3');
-    print('start recording');
+    //print('start recording');
     try {
       RecordMp3.instance.start(audioFile.path, (type) {
-        // record fail callback
-        print('fail');
+        //print('fail');
         isRecording.value = false;
       });
-
       isRecording.value = true;
     } catch (e) {
       isRecording.value = false;
-      // TODO
-      // print(e as CodeNor);
     }
   }
 
   Future<File> stopRecording() async {
-    print('stop recording');
+    //print('stop recording');
     RecordMp3.instance.stop();
 
     isRecording.value = false;
@@ -72,13 +72,13 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
   initNewSession() {
-    if (widget.sessionId == 0) {
-      Provider.of<ChatProvider>(context, listen: false).sessionId = 0;
-      Provider.of<ChatProvider>(context, listen: false).clearMessages();
+    final chatProvider = Provider.of<ChatProvider>(context, listen: false);
+    if (widget.sessionId == null) {
+      chatProvider.sessionId = null;
+      chatProvider.clearMessages();
     } else {
-      Provider.of<ChatProvider>(context, listen: false).sessionId =
-          widget.sessionId ?? 0;
-      Provider.of<ChatProvider>(context, listen: false).loadSession();
+      chatProvider.sessionId = widget.sessionId;
+      chatProvider.loadSession();
     }
   }
 
@@ -93,87 +93,92 @@ class _ChatScreenState extends State<ChatScreen> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       extendBody: true,
+      // resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: const Text('Support.ai Assistant'),
       ),
-      bottomNavigationBar: Padding(
-          padding: MediaQuery.of(context).viewInsets,
-          child: ClipRRect(
-            borderRadius: const BorderRadius.only(
-              topRight: Radius.circular(16),
-              topLeft: Radius.circular(16),
-            ),
-            child: BackdropFilter(
-              filter: ImageFilter.blur(
-                sigmaX: 8,
-                sigmaY: 8,
+      bottomNavigationBar: Builder(builder: (context) {
+        return Padding(
+            padding: MediaQuery.of(context).viewInsets,
+            child: ClipRRect(
+              borderRadius: const BorderRadius.only(
+                topRight: Radius.circular(16),
+                topLeft: Radius.circular(16),
               ),
-              child: BottomAppBar(
-                // elevation: 0,
-                clipBehavior: Clip.antiAlias,
-                color: Color.fromARGB(255, 9, 9, 9).withOpacity(0.9),
-                // .withAlpha(255),
-                // color: Colors.black.withOpacity(0.1),
-                child: Row(
-                  children: [
-                    // text field
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(0.0),
-                        child: TextField(
-                          controller: _textController,
-                          autofocus: widget.sessionId == null ? true : false,
-                          decoration: InputDecoration(
-                            filled: true,
-                            labelText: 'Type a message...',
-                            labelStyle: Theme.of(context)
-                                .textTheme
-                                .bodyLarge
-                                ?.copyWith(color: Colors.grey),
-                            contentPadding: const EdgeInsets.symmetric(
-                                horizontal: 12, vertical: 6),
-                            border: const OutlineInputBorder(),
+              child: BackdropFilter(
+                filter: ImageFilter.blur(
+                  sigmaX: 8,
+                  sigmaY: 8,
+                ),
+                child: BottomAppBar(
+                  // elevation: 0,
+                  clipBehavior: Clip.antiAlias,
+                  color: Color.fromARGB(255, 9, 9, 9).withOpacity(0.9),
+                  // .withAlpha(255),
+                  // color: Colors.black.withOpacity(0.1),
+                  child: Row(
+                    children: [
+                      // text field
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.all(0.0),
+                          child: TextField(
+                            controller: _textController,
+                            autofocus: false,
+                            decoration: InputDecoration(
+                              filled: true,
+                              labelText: 'Type a message...',
+                              labelStyle: Theme.of(context)
+                                  .textTheme
+                                  .bodyLarge
+                                  ?.copyWith(color: Colors.grey),
+                              contentPadding: const EdgeInsets.symmetric(
+                                  horizontal: 12, vertical: 6),
+                              border: const OutlineInputBorder(),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-
-                    // send button
-                    Builder(builder: (context) {
-                      // bool isRecording = recorder?.isRecording ?? false;
-                      return ValueListenableBuilder<bool>(
-                          valueListenable: isRecording,
-                          builder: (context, isRecording, child) {
-                            return InkWell(
-                              onTapDown: (details) => startRecording(),
-                              onTapCancel: () => getAudioChat(),
-                              child: IconButton(
-                                // color: Colors.white,
-                                icon: isRecording
-                                    ? Icon(Icons.stop)
-                                    : Icon(CupertinoIcons.mic_fill),
-                                onPressed: () {},
-                              ),
-                            );
-                          });
-                    }),
-                    IconButton(
-                      // color: Colors.white,
-                      icon: const Icon(CupertinoIcons.paperplane_fill),
-                      onPressed: () {
-                        // send message
-                        if (_textController.text.isNotEmpty) {
-                          Provider.of<ChatProvider>(context, listen: false)
-                              .chatWithAssistant(_textController.text);
-                          _textController.clear();
-                        }
-                      },
-                    ),
-                  ],
+                      !kIsWeb
+                          ? Builder(builder: (context) {
+                              // bool isRecording = recorder?.isRecording ?? false;
+                              return ValueListenableBuilder<bool>(
+                                  valueListenable: isRecording,
+                                  builder: (context, isRecording, child) {
+                                    return InkWell(
+                                      onTapDown: (details) => startRecording(),
+                                      onTapCancel: () => getAudioChat(),
+                                      child: IconButton(
+                                        // color: Colors.white,
+                                        icon: isRecording
+                                            ? Icon(Icons.stop)
+                                            : Icon(CupertinoIcons.mic_fill),
+                                        onPressed: () {},
+                                      ),
+                                    );
+                                  });
+                            })
+                          : SizedBox(),
+                      // send button
+                      IconButton(
+                        // color: Colors.white,
+                        icon: const Icon(CupertinoIcons.paperplane_fill),
+                        onPressed: () {
+                          // send message
+                          if (_textController.text.isNotEmpty) {
+                            Provider.of<ChatProvider>(context, listen: false)
+                                .chatWithAssistant(_textController.text);
+                            _textController.clear();
+                          }
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          )),
+            ));
+      }),
+
       body: Consumer<ChatProvider>(
         builder: (context, provider, _) {
           bool isListEmpty = provider.messages.isEmpty;
@@ -185,10 +190,7 @@ class _ChatScreenState extends State<ChatScreen> {
             return ListView.builder(
               reverse: true,
               itemCount: chats.length,
-              itemBuilder: (
-                context,
-                index,
-              ) {
+              itemBuilder: (context, index) {
                 // is role is user then align to right
                 // else align to left
                 ChatMessage message = chats[index];
@@ -206,7 +208,7 @@ class _ChatScreenState extends State<ChatScreen> {
                         ? Alignment.centerRight
                         : Alignment.centerLeft,
                     child: Container(
-                      width: MediaQuery.of(context).size.width * 0.7,
+                      width: 250,
                       padding: const EdgeInsets.all(8.0),
                       decoration: BoxDecoration(
                         color: messageBackgroundColor,
@@ -324,8 +326,6 @@ class _AudioMessageWidgetState extends State<AudioMessageWidget> {
   Widget build(BuildContext context) {
     return Builder(builder: (context) {
       if (widget.message.isAudio ?? false) {
-        // var duration = player.setUrl('file.mp3');
-
         return VoiceMessageView(
           innerPadding: 12,
           circlesColor: Colors.grey.shade800,

@@ -52,7 +52,7 @@ class _DOBInputState extends State<DOBInput>
           );
         },
       );
-      print(picked);
+      //print(picked);
       if (picked != null && picked != selectedDate) {
         setState(() {
           selectedDate = picked;
@@ -92,7 +92,7 @@ class _DOBInputState extends State<DOBInput>
             if (selectedDate != null) {
               formattedDate = DateFormat('dd MM yyyy').format(selectedDate!);
             }
-            print(selectedDate);
+            //print(selectedDate);
             return Padding(
               padding: const EdgeInsets.all(14.0),
               child: Text(

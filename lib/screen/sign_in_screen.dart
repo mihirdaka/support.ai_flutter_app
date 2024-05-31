@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:supportu_flutter_app/data/auth.dart';
 import 'package:supportu_flutter_app/data/user.dart';
 import 'package:supportu_flutter_app/provider/auth_provider.dart';
+import 'package:supportu_flutter_app/screen/register.dart';
 // import 'package:sparq_flutter_app/data/auth.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -115,6 +116,10 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                     // textColor: Theme.of(context).iconTheme.color,
                     onPressed: () {
+                      Navigator.of(context)
+                          .push(MaterialPageRoute(builder: (context) {
+                        return RegisterScreen();
+                      }));
                       // Navigator.of(context).pushNamed(Routes.register);
                     },
                   ),

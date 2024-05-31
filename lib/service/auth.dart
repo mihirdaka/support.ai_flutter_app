@@ -20,7 +20,7 @@ class AuthClient {
         apiEnpoints.BaseUrl + apiEnpoints.registerUser,
         data: json.encode(userData),
       );
-      print(response);
+      // print(response);
       switch (response.statusCode) {
         case 200:
         case 201:
@@ -29,11 +29,11 @@ class AuthClient {
         case 401:
           return null;
         default:
-          return null;
+          return RegisterResponse.fromJson(response.data);
       }
     } on DioException catch (e) {
       print(e.toString());
-      return e.response!.data;
+      return RegisterResponse.fromJson(e.response?.data);
     }
   }
 
@@ -44,12 +44,12 @@ class AuthClient {
         apiEnpoints.BaseUrl + apiEnpoints.loginUser,
         data: json.encode(user),
       );
-      // print(response);
+      // //print(response);
       switch (response.statusCode) {
         case 200:
         case 201:
           // final jData = json.decode(response.data);
-          print(response.data);
+          //print(response.data);
           return RegisterResponse.fromJson(response.data);
         case 400:
           return RegisterResponse.fromJson(response.data);
@@ -57,8 +57,8 @@ class AuthClient {
           return RegisterResponse.fromJson(response.data);
       }
     } on DioException catch (e) {
-      print('i got error \n\n\n\n');
-      print(e.toString());
+      //print('i got error \n\n\n\n');
+      //print(e.toString());
       return RegisterResponse.fromJson(e.response?.data);
 
       // return e.response!.data;
@@ -79,12 +79,12 @@ class AuthClient {
         options: Options(headers: headers),
       );
 
-      // print(response);
+      // //print(response);
       switch (response.statusCode) {
         case 200:
         case 201:
           // final jData = json.decode(response.data);
-          print(response.data);
+          //print(response.data);
           return ChatResponse.fromJson(response.data);
         case 400:
           return ChatResponse.fromJson(response.data);
@@ -92,8 +92,8 @@ class AuthClient {
           return ChatResponse.fromJson(response.data);
       }
     } on DioException catch (e) {
-      print('i got error \n\n\n\n');
-      print(e.toString());
+      //print('i got error \n\n\n\n');
+      //print(e.toString());
 
       return ChatResponse.fromJson(e.response?.data);
 
@@ -120,12 +120,12 @@ class AuthClient {
           responseType: ResponseType.bytes,
         ),
       );
-      // print(response.data);
+      // //print(response.data);
       switch (response.statusCode) {
         case 200:
         case 201:
           final Directory directory = await getApplicationDocumentsDirectory();
-          final File file = File('${directory.path}/my_file.mp3');
+          final File file = File('${directory.path}/response.mp3');
           await file.writeAsBytes(response.data);
           return file;
         // return file;
@@ -135,8 +135,8 @@ class AuthClient {
           return null;
       }
     } catch (e) {
-      // print('i got error \n\n\n\n');
-      print(e.toString());
+      // //print('i got error \n\n\n\n');
+      //print(e.toString());
       return null;
     }
   }

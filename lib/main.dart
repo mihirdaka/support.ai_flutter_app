@@ -12,7 +12,7 @@ void main() {
 }
 
 initFirebase() async {
-  print('init firebase');
+  //print('init firebase');
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

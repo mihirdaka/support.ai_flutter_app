@@ -101,7 +101,7 @@ class AuthProvider extends ChangeNotifier {
       return await fAuth.FirebaseAuth.instance.signInWithCredential(credential);
     } catch (e) {
       // TODO
-      print('exception->$e');
+      //print('exception->$e');
     }
   }
 
@@ -155,6 +155,7 @@ class AuthProvider extends ChangeNotifier {
       notifyListeners();
       final RegisterResponse? response =
           await authApiClient.registerUser(userData);
+
       if (response?.status ?? false) {
         saveToHive(
           User(
@@ -205,7 +206,7 @@ class AuthProvider extends ChangeNotifier {
       }
       return response;
     } catch (e) {
-      print("Error on the sign in = " + e.toString());
+      //print("Error on the sign in = " + e.toString());
       _status = Status.unauthenticated;
       notifyListeners();
       RegisterResponse? response = RegisterResponse();

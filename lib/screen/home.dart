@@ -23,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
       Permission.microphone,
       Permission.manageExternalStorage,
     ].request();
-    print(statuses);
+    //print(statuses);
   }
 
   @override
@@ -199,7 +199,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         Navigator.of(context)
                             .push(MaterialPageRoute(builder: (context) {
                           return const ChatScreen(
-                            sessionId: 0,
+                            sessionId: null,
                           );
                         }));
                       },

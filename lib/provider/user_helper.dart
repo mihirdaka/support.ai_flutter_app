@@ -21,7 +21,7 @@ class UserHelper {
   void fetchUser() async {
     final box = await Hive.openBox<User>('user');
     final User? userModel = box.get('userModel');
-    // print(userModel);
+    // //print(userModel);
     if (userModel?.userModel.accessToken != null) {
       _user = userModel;
       setUser(_user);
@@ -42,7 +42,7 @@ class UserHelper {
     return _user?.userModel.accessToken;
     // final box = await Hive.openBox<User>('user');
     // final User? userModel = box.get('userModel');
-    // print(userModel);
+    // //print(userModel);
     // return userModel?.userModel.accessToken ?? 'NA';
   }
 }
