@@ -5,6 +5,8 @@ Where as the backend for this project is developed using Node.js and other depen
 
 Here is the backend repo :(https://github.com/mihirdaka/support.ai_backend)
 
+Also this app is hosted on firebase as a webApp with limited functionality 
+url : (https://supportu-app.web.app/)
 
 ## Requirements
 
