@@ -1,6 +1,7 @@
 # Support.ai Flutter App (iOS+Android+Web)
 
-Here is my ai chatbot app Support.ai Frontend of this product is developed using Flutter framework.
+Here is my crossplatform ai chatbot app Support.ai Frontend of this product is developed using Flutter framework.
+This app is available on iOS (attached demo), android and web.
 Where as the backend for this project is developed using Node.js and other dependecies.
 
 Here is the backend repo :(https://github.com/mihirdaka/support.ai_backend)
