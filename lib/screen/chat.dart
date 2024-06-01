@@ -151,8 +151,9 @@ class _ChatScreenState extends State<ChatScreen> {
                                       child: IconButton(
                                         // color: Colors.white,
                                         icon: isRecording
-                                            ? Icon(Icons.stop)
-                                            : Icon(CupertinoIcons.mic_fill),
+                                            ? const Icon(Icons.stop)
+                                            : const Icon(
+                                                CupertinoIcons.mic_fill),
                                         onPressed: () {},
                                       ),
                                     );
