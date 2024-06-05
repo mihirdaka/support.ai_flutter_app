@@ -1,9 +1,9 @@
 // import 'dart:io';
 
 class ApiEnpoints {
-  final String BaseUrl = "https://mjt0lpqp-5555.usw3.devtunnels.ms/";
+  // final String BaseUrl = "https://mjt0lpqp-5555.usw3.devtunnels.ms/";
   // ignore: non_constant_identifier_names
-  // final String BaseUrl = "http://localhost:5555/";
+  final String BaseUrl = "http://localhost:5555/";
   final headers = {
     'Accept': 'application/json',
   };
